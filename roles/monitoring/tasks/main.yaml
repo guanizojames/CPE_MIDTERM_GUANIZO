@@ -1,0 +1,45 @@
+---
+- name: Install Grafana
+  become: true
+  package:
+    name: grafana
+    state: present
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Start and Enable Grafana
+  become: true
+  service:
+    name: grafana-server
+    state: started
+    enabled: true
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Install Prometheus
+  become: true
+  package:
+    name: prometheus
+    state: present
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Start and Enable Prometheus
+  become: true
+  service:
+    name: prometheus
+    state: started
+    enabled: true
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Install InfluxDB
+  become: true
+  package:
+    name: influxdb
+    state: present
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Start and Enable InfluxDB
+  become: true
+  service:
+    name: influxdb
+    state: started
+    enabled: true
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"

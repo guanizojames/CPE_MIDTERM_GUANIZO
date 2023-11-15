@@ -1,0 +1,15 @@
+---
+- name: Install Nagios on CentOS
+  become: true
+  yum:
+    name: nagios
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Start and Enable Nagios
+  become: true
+  service:
+    name: nagios
+    state: started
+    enabled: true
+  when: ansible_distribution == "CentOS"

@@ -1,0 +1,22 @@
+---
+- name: Install Java
+  become: true
+  package:
+    name: java-11-openjdk
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Download and Install Elasticsearch
+  become: true
+  package:
+    name: elasticsearch
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Start and Enable Elasticsearch
+  become: true
+  service:
+    name: elasticsearch
+    state: started
+    enabled: true
+  when: ansible_distribution == "CentOS"
